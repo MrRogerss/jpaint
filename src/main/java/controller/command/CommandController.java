@@ -9,17 +9,17 @@ import model.interfaces.UserChoices;
 public class CommandController {
 
   private UserChoices userChoices;
-  private Picture shapes;
+  private Picture picture;
 
   public CommandController(UserChoices userChoices, Picture shapes
   ) {
     this.userChoices = userChoices;
-    this.shapes = shapes;
+    this.picture = shapes;
 
   }
 
   public void onDraw(Point start, Point end){
-    ICommand command = new CreateShapeCommand(userChoices,start,end,shapes);
+    ICommand command = new CreateShapeCommand(userChoices,start,end,picture);
     command.run();
 
   }
