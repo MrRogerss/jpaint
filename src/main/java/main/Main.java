@@ -9,6 +9,7 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Stroke;
+import model.Picture.Picture;
 import model.interfaces.UserChoices;
 import model.persistence.UserChoicesImpl;
 import view.gui.Gui;
@@ -27,7 +28,8 @@ public class Main {
 
         KeyboardInterface keys = new KeyboardInterface(paintCanvas, appState);
         keys.setup();
-        CommandController commandController = new CommandController(appState);
+        Picture shapes = new Picture();
+        CommandController commandController = new CommandController(appState,shapes);
         MouseHandler mouse = new MouseHandler(commandController);
         paintCanvas.addMouseListener(mouse);
         controller.setup();
