@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Stroke;
 import model.Picture.Picture;
+import model.interfaces.IShape;
 import model.interfaces.UserChoices;
 import model.persistence.UserChoicesImpl;
 import view.gui.Gui;
@@ -20,7 +21,8 @@ import view.interfaces.UiModule;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-        PaintCanvas paintCanvas = new PaintCanvas();
+        Picture picture = new Picture();
+        PaintCanvas paintCanvas = new PaintCanvas(picture);
         GuiWindow guiWindow = new GuiWindowImpl(paintCanvas);
         UiModule uiModule = new Gui(guiWindow);
         UserChoices appState = new UserChoicesImpl(uiModule);
@@ -28,8 +30,7 @@ public class Main {
 
         KeyboardInterface keys = new KeyboardInterface(paintCanvas, appState);
         keys.setup();
-        Picture shapes = new Picture();
-        CommandController commandController = new CommandController(appState,shapes);
+        CommandController commandController = new CommandController(appState,picture);
         MouseHandler mouse = new MouseHandler(commandController);
         paintCanvas.addMouseListener(mouse);
         controller.setup();
@@ -37,23 +38,9 @@ public class Main {
         Thread.sleep(500);
 
         Graphics2D graphics2d = paintCanvas.getGraphics2D();
+        paintCanvas.paintComponent(graphics2d);
+        paintCanvas.repaint();
 
-        // - Begin example: remove after you understand it
 
-        graphics2d.setColor(Color.GREEN);
-        graphics2d.fillRect(12, 13, 200, 400);
-
-        // Outlined rectangle
-        graphics2d.setStroke(new BasicStroke(5));
-        graphics2d.setColor(Color.BLUE);
-        graphics2d.drawRect(12, 13, 200, 400);
-
-        // Selected Shape
-        Stroke stroke = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 1, new float[]{9}, 0);
-        graphics2d.setStroke(stroke);
-        graphics2d.setColor(Color.BLACK);
-        graphics2d.drawRect(7, 8, 210, 410);
-
-        // - End example
     }
 }

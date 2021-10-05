@@ -5,6 +5,11 @@ import model.Picture.Picture;
 import model.Picture.Point;
 import model.interfaces.UserChoices;
 
+/**
+ * This class is responsible for passing along the start and end mouse
+ * coordinates to the CreateShapeCommand class, as well as passing
+ * on the userChoices and Picture container.
+ */
 
 public class CommandController {
 

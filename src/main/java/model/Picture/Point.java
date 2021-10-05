@@ -1,5 +1,10 @@
 package model.Picture;
 
+/**
+ * This class stores the mouse coordinates received from MouseHandler. It has two
+ * fields for X and Y and methods to get each of them.
+ */
+
 public class Point {
 
   public Point(int x, int y) {

@@ -1,14 +1,13 @@
 package model;
 
+import java.awt.BasicStroke;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import model.Picture.Point;
 import model.interfaces.IShape;
 
 /**
- * This class receives information from CreateShapeCommand and draws a rectangle. In addition,
- * this class normalizes the coordinates received from the Point Class.
- *
+ * @see model.interfaces.IShape
  */
 
 public class Shape implements IShape {
@@ -26,14 +25,16 @@ public class Shape implements IShape {
 
   @Override
   public Point normalizedPointStart(Point start, Point end){
+
     int minX = Math.min(start.getX(), end.getX());
-    int minY = Math.min(start.getY(),end.getX());
+    int minY = Math.min(start.getY(),end.getY());
+
     return new Point(minX,minY);
   }
 
-  public Point normalizedPointEnd(Point stare, Point end){
+  public Point normalizedPointEnd(Point start, Point end){
     int maxX = Math.max(start.getX(), end.getX());
-    int maxY = Math.max(start.getY(),end.getX());
+    int maxY = Math.max(start.getY(),end.getY());
     return new Point(maxX,maxY);
   }
 
@@ -43,6 +44,9 @@ public class Shape implements IShape {
 
     Graphics2D graphics2D = (Graphics2D) g;
 
+    graphics2D.setStroke(new BasicStroke(5));
+    graphics2D.setColor(color.value);
+    graphics2D.fillRect(start.getX(), start.getY(), (end.getX())- start.getX(),(end.getY())- start.getY());
 
 
   }

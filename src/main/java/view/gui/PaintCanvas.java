@@ -2,6 +2,8 @@ package view.gui;
 
 import javax.swing.JComponent;
 import java.awt.*;
+import model.Picture.Picture;
+import model.interfaces.IShape;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,9 +13,10 @@ import org.slf4j.LoggerFactory;
  * should be added here.
  */
 public class PaintCanvas extends JComponent {
-
-    // part of the example below.  Please removed when the example is removed
-    private int paintCount = 0;
+    Picture picture;
+    public PaintCanvas(Picture picture) {
+        this.picture=picture;
+    }
 
     private static final Logger log = LoggerFactory.getLogger(PaintCanvas.class);
 
@@ -29,25 +32,11 @@ public class PaintCanvas extends JComponent {
      */
     public void paintComponent(Graphics graphics) {
         Graphics2D graphics2d = (Graphics2D) graphics;
-//
-//        // - Begin example: remove after you understand it
-        paintCount++;
-        log.debug("time to paint " + paintCount);
-//
-//        graphics2d.setColor(Color.GREEN);
-//        graphics2d.fillRect(12, 13, 200, 400);
-//
-//        // Outlined rectangle
-//        graphics2d.setStroke(new BasicStroke(5));
-//        graphics2d.setColor(Color.BLUE);
-//        graphics2d.drawRect(12, 13, 200, 400);
-//
-//        // Selected Shape
-//        Stroke stroke = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 1, new float[]{9}, 0);
-//        graphics2d.setStroke(stroke);
-//        graphics2d.setColor(Color.BLACK);
-//        graphics2d.drawRect(7, 8, 210, 410);
-//
-//        // - End example
+        repaint();
+        for(IShape shape : picture.getPicture()){
+            shape.draw(graphics2d);
+            repaint();
+        }
+
     }
 }

@@ -8,6 +8,12 @@ import model.Shape;
 import model.interfaces.IShape;
 import model.interfaces.UserChoices;
 
+/**
+ * This class gets the shape properties from UserChoices and creates a new
+ * shape object. This object is added to the Picture class and the Command
+ * History. It also supports redo and undo.
+  */
+
 public class CreateShapeCommand implements ICommand, Undoable {
 
   UserChoices userChoices;
@@ -26,7 +32,6 @@ public CreateShapeCommand(UserChoices userChoices, Point start, Point end, Pictu
 
   @Override
   public void run() {
-    System.out.println("running createShapeCommand");
     shape = new Shape(start, end, userChoices.getActivePrimaryColor());
     this.picture.add(shape);
     CommandHistory.add(this);

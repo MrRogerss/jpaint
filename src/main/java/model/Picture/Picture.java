@@ -1,29 +1,33 @@
 package model.Picture;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import model.interfaces.IShape;
 
 /**
  * Container that contains Shape objects to draw. It stores these shapes
- * in an ArrayList.
+ * in an ArrayList. It contains methods to add a shape,remove a shape, or
+ * return the ArrayList.
  *
  */
 
 public class Picture {
 
-  private ArrayList<IShape> shapes;
+  private ArrayList<IShape> picture;
 
   public Picture(){
-    shapes = new ArrayList<IShape>();
+    picture = new ArrayList<IShape>();
   }
 
   public void add(IShape shape){
-    shapes.add((shape));
+    picture.add((shape));
   }
 
   public void remove(IShape shape){
 
-    shapes.remove(shape);
+    picture.remove(shape);
+  }
+
+  public ArrayList<IShape> getPicture(){
+    return picture;
   }
 
 }
