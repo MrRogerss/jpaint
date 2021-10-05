@@ -3,6 +3,7 @@ import org.apache.tools.ant.DirectoryScanner
 
 plugins {
     id 'java-library'
+    id 'application'
 }
 
 group 'edu.depaul'
@@ -60,5 +61,13 @@ test {
 
 check {
     finalizedBy packageDistribution
+}
+
+ext {
+    javaMainClass = "main.Main"
+}
+
+application {
+    mainClassName = javaMainClass
 }
 
