@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import model.Picture.Point;
 import model.interfaces.IShape;
+import model.Picture.NormalizePoints;
 
 /**
  * @see model.interfaces.IShape
@@ -12,30 +13,17 @@ import model.interfaces.IShape;
 
 public class Rectangle implements IShape {
 
+  NormalizePoints normalize;
   Point start;
   Point end;
   ShapeColor color;
 
   public Rectangle(Point start, Point end, ShapeColor color)
   {
-      this.start = normalizedPointStart(start, end);
-      this.end = normalizedPointEnd(start,end);
+      normalize = new NormalizePoints(start, end);
+      this.start = normalize.normalizedPointStart(start,end);
+      this.end = normalize.normalizedPointEnd(start,end);
       this.color = color;
-  }
-
-  @Override
-  public Point normalizedPointStart(Point start, Point end){
-
-    int minX = Math.min(start.getX(), end.getX());
-    int minY = Math.min(start.getY(),end.getY());
-
-    return new Point(minX,minY);
-  }
-
-  public Point normalizedPointEnd(Point start, Point end){
-    int maxX = Math.max(start.getX(), end.getX());
-    int maxY = Math.max(start.getY(),end.getY());
-    return new Point(maxX,maxY);
   }
 
 

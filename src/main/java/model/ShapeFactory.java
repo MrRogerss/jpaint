@@ -12,6 +12,14 @@ public class ShapeFactory {
       newShape = new Rectangle(start, end, color);
     }
 
+    if(type.equals(ShapeType.TRIANGLE)){
+      newShape = new Triangle(start, end, color);
+    }
+
+    if(type.equals(ShapeType.ELLIPSE)){
+      newShape = new Ellipse(start, end, color);
+    }
+
     return newShape;
   }
 
