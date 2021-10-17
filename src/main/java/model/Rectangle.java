@@ -10,13 +10,13 @@ import model.interfaces.IShape;
  * @see model.interfaces.IShape
  */
 
-public class Shape implements IShape {
+public class Rectangle implements IShape {
 
   Point start;
   Point end;
   ShapeColor color;
 
-  public Shape(Point start, Point end, ShapeColor color)
+  public Rectangle(Point start, Point end, ShapeColor color)
   {
       this.start = normalizedPointStart(start, end);
       this.end = normalizedPointEnd(start,end);

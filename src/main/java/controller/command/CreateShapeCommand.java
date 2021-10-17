@@ -4,7 +4,10 @@ import controller.interfaces.ICommand;
 import controller.interfaces.Undoable;
 import model.Picture.Picture;
 import model.Picture.Point;
-import model.Shape;
+import model.Rectangle;
+import model.ShapeColor;
+import model.ShapeFactory;
+import model.ShapeType;
 import model.interfaces.IShape;
 import model.interfaces.UserChoices;
 
@@ -16,7 +19,8 @@ import model.interfaces.UserChoices;
 
 public class CreateShapeCommand implements ICommand, Undoable {
 
-  UserChoices userChoices;
+  ShapeColor color;
+  ShapeType type;
   Point start;
   Point end;
   Picture picture;
@@ -24,7 +28,8 @@ public class CreateShapeCommand implements ICommand, Undoable {
 
 
 public CreateShapeCommand(UserChoices userChoices, Point start, Point end, Picture picture){
-  this.userChoices = userChoices;
+  this.color = userChoices.getActivePrimaryColor();
+  this.type = userChoices.getActiveShapeType();
   this.start = start;
   this.end = end;
   this.picture = picture;
@@ -32,7 +37,7 @@ public CreateShapeCommand(UserChoices userChoices, Point start, Point end, Pictu
 
   @Override
   public void run() {
-    shape = new Shape(start, end, userChoices.getActivePrimaryColor());
+    shape = new ShapeFactory().createShape(type,color,start,end);
     this.picture.add(shape);
     CommandHistory.add(this);
 
