@@ -1,7 +1,7 @@
 package model.interfaces;
 
 import java.awt.Graphics;
-import java.awt.Point;
+import model.Picture.Point;
 
 /**
  *  This class receives information from the ShapeFactory and draws the requested shape. In addition,
@@ -12,6 +12,9 @@ import java.awt.Point;
 public interface IShape {
 
   void draw(Graphics g);
+
+  Point getStart();
+  Point getEnd();
 
 
 }

@@ -39,4 +39,14 @@ public class Ellipse implements IShape {
   private int getHeight(){
     return end.getY()- start.getY();
   }
+
+  @Override
+  public Point getStart() {
+    return start;
+  }
+
+  @Override
+  public Point getEnd() {
+    return end;
+  }
 }

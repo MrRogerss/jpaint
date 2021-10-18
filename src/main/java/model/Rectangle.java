@@ -39,6 +39,13 @@ public class Rectangle implements IShape {
 
   }
 
+  @Override
+  public Point getStart() {
+    return start;
+  }
 
-
+  @Override
+  public Point getEnd() {
+    return end;
+  }
 }

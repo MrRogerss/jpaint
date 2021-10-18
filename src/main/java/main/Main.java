@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Stroke;
 import model.Picture.Picture;
+import model.Picture.SelectList;
 import model.interfaces.IShape;
 import model.interfaces.UserChoices;
 import model.persistence.UserChoicesImpl;
@@ -22,6 +23,7 @@ import view.interfaces.UiModule;
 public class Main {
     public static void main(String[] args) throws InterruptedException {
         Picture picture = new Picture();
+        SelectList selectList = new SelectList();
         PaintCanvas paintCanvas = new PaintCanvas(picture);
         GuiWindow guiWindow = new GuiWindowImpl(paintCanvas);
         UiModule uiModule = new Gui(guiWindow);
@@ -30,7 +32,7 @@ public class Main {
 
         KeyboardInterface keys = new KeyboardInterface(paintCanvas, appState);
         keys.setup();
-        CommandController commandController = new CommandController(appState,picture);
+        CommandController commandController = new CommandController(appState,picture,selectList);
         MouseHandler mouse = new MouseHandler(commandController);
         paintCanvas.addMouseListener(mouse);
         controller.setup();

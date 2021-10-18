@@ -41,4 +41,14 @@ public class Triangle implements IShape {
     graphics2D.fillPolygon(x,y,3);
 
   }
+
+  @Override
+  public Point getStart() {
+    return start;
+  }
+
+  @Override
+  public Point getEnd() {
+    return end;
+  }
 }

@@ -23,6 +23,10 @@ public class Point {
     return y;
   }
 
+  public void setX(int newx) { x = newx; }
+
+  public void setY(int newy) { y = newy; }
+
 
 
 
