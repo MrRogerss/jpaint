@@ -9,6 +9,10 @@ import model.Picture.Point;
 import model.Picture.SelectList;
 import model.interfaces.IShape;
 
+/**
+ * Selects shapes and adds them to the select class.
+ */
+
 public class SelectCommand implements ICommand {
 
   NormalizePoints normalize;

@@ -7,6 +7,10 @@ import model.Picture.Point;
 import model.interfaces.IShape;
 import model.Picture.NormalizePoints;
 
+/**
+ * @see model.interfaces.IShape
+ */
+
 public class Triangle implements IShape {
 
   NormalizePoints normalize;

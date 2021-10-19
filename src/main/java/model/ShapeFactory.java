@@ -4,6 +4,10 @@ package model;
 import model.Picture.Point;
 import model.interfaces.IShape;
 
+/**
+ * This is a factory that creates shape commands based on the selected shape type.
+ */
+
 public class ShapeFactory {
 
   public IShape createShape(ShapeType type, ShapeColor color, Point start, Point end) {

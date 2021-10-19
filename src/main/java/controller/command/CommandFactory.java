@@ -6,6 +6,12 @@ import model.Picture.Picture;
 import model.Picture.Point;
 import model.interfaces.UserChoices;
 
+/**
+ * Takes points from the MouseHandler and creates commands based
+ * on the Mouse Mode.
+ */
+
+
 public class CommandFactory {
 
   Point start;

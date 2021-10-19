@@ -8,6 +8,12 @@ import model.Picture.Point;
 import model.Picture.SelectList;
 import model.interfaces.IShape;
 
+
+/**
+    This class takes shapes from the selected List and moves them to the users desired
+    location on the canvas. Has support for undo and redo.
+
+ */
 public class MoveCommand implements ICommand, Undoable {
 
 NormalizePoints normalize;

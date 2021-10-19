@@ -8,6 +8,10 @@ import model.Picture.Point;
 import model.interfaces.IShape;
 import model.Picture.NormalizePoints;
 
+/**
+ * @see model.interfaces.IShape
+ */
+
 public class Ellipse implements IShape {
 
   NormalizePoints normalize;

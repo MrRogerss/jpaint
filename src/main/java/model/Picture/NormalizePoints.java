@@ -1,5 +1,9 @@
 package model.Picture;
 
+/**
+ * Takes Points from a point class and normalizes them.
+ */
+
 public class NormalizePoints {
 
   Point start;
