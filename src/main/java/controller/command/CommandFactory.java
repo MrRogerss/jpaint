@@ -28,6 +28,9 @@ public class CommandFactory {
     if(commandController.getMouseMode().equals(MouseMode.SELECT)){
       commandController.onSelect(start,end);
     }
+    if(commandController.getMouseMode().equals(MouseMode.MOVE)){
+      commandController.onMove(start,end);
+    }
   }
 
 }

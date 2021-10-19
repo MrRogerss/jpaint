@@ -48,4 +48,28 @@ public class Rectangle implements IShape {
   public Point getEnd() {
     return end;
   }
+
+  @Override
+  public void addX(int x) {
+    start.setX(start.getX() + x );
+    end.setX(end.getX() + x);
+  }
+
+  @Override
+  public void addY(int y) {
+    start.setY(start.getY() + y );
+    end.setY(end.getY() + y);
+  }
+
+  @Override
+  public void subtractX(int x) {
+    start.setX(start.getX() - x);
+    end.setX(end.getX() - x);
+  }
+
+  @Override
+  public void subtractY(int y) {
+    start.setY(start.getY()-y);
+    end.setY(end.getY() - y);
+  }
 }

@@ -6,6 +6,7 @@ import model.Picture.Picture;
 import model.Picture.Point;
 import model.Picture.SelectList;
 import model.interfaces.UserChoices;
+import view.gui.PaintCanvas;
 
 /**
  * This class is responsible for passing along the start and end mouse
@@ -18,8 +19,10 @@ public class CommandController {
   private UserChoices userChoices;
   private Picture picture;
   private SelectList selectList;
+  private final PaintCanvas canvas;
 
-  public CommandController(UserChoices userChoices, Picture shapes, SelectList selectList) {
+  public CommandController(UserChoices userChoices, Picture shapes, SelectList selectList, PaintCanvas canvas) {
+    this.canvas = canvas;
     this.userChoices = userChoices;
     this.picture = shapes;
     this.selectList = selectList;
@@ -29,6 +32,7 @@ public class CommandController {
   public void onDraw(Point start, Point end){
     ICommand command = new CreateShapeCommand(userChoices,start,end,picture);
     command.run();
+    canvas.repaint();
   }
 
   public void onSelect(Point start, Point end){
@@ -37,7 +41,21 @@ public class CommandController {
   }
 
   public void onMove(Point start, Point end){
+    canvas.repaint();
+    ICommand move = new MoveCommand(start,end,selectList,picture);
+    move.run();
+    canvas.repaint();
 
+  }
+
+  public void onUndo() {
+    CommandHistory.undo();
+    canvas.repaint();
+  }
+
+  public void onRedo() {
+    CommandHistory.redo();
+    canvas.repaint();
   }
 
   public MouseMode getMouseMode(){

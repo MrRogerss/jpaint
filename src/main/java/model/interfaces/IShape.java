@@ -16,5 +16,10 @@ public interface IShape {
   Point getStart();
   Point getEnd();
 
+  void addX(int x);
+  void addY(int y);
+  void subtractX(int x);
+  void subtractY(int y);
+
 
 }

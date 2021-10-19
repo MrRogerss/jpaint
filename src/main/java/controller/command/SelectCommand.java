@@ -33,8 +33,8 @@ public class SelectCommand implements ICommand {
     boolean selectedOnce = false;
 
     for(IShape shape : picture.getPicture()){
-      if(shape.getStart().getX() < boundaryStart.getX() && shape.getStart().getY() < boundaryStart.getY() &&
-          shape.getEnd().getX() > boundaryStart.getX() && shape.getEnd().getY() > boundaryStart.getY())
+      if(boundaryStart.getX() < shape.getStart().getX() && boundaryEnd.getX() > shape.getStart().getX() &&
+          boundaryStart.getY() < shape.getStart().getY() && boundaryEnd.getY() > shape.getEnd().getY())
       {
         selectedOnce = true;
         temp.add(shape);

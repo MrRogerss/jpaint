@@ -32,10 +32,8 @@ public class PaintCanvas extends JComponent {
      */
     public void paintComponent(Graphics graphics) {
         Graphics2D graphics2d = (Graphics2D) graphics;
-        repaint();
         for(IShape shape : picture.getPicture()){
             shape.draw(graphics2d);
-            repaint();
         }
 
     }
