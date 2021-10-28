@@ -40,13 +40,8 @@ int dy;
 
     for(IShape shape : selectList.getSelect())
     {
-      newShapeLocation = shape;
-      newShapeLocation.addX(dx);
-      newShapeLocation.addY(dy);
-      selectList.remove(shape);
-      picture.remove(shape);
-      picture.add(newShapeLocation);
-      selectList.add(newShapeLocation);
+      shape.addX(dx);
+      shape.addY(dy);
     }
     CommandHistory.add(this);
 
@@ -56,13 +51,8 @@ int dy;
   public void undo() {
     for(IShape shape : selectList.getSelect())
     {
-      newShapeLocation = shape;
-      newShapeLocation.subtractX(dx);
-      newShapeLocation.subtractY(dy);
-      selectList.remove(shape);
-      picture.remove(shape);
-      picture.add(newShapeLocation);
-      selectList.add(newShapeLocation);
+      shape.subtractX(dx);
+      shape.subtractY(dy);
     }
 
   }
@@ -71,13 +61,8 @@ int dy;
   public void redo() {
     for(IShape shape : selectList.getSelect())
     {
-      newShapeLocation = shape;
-      newShapeLocation.addX(dx);
-      newShapeLocation.addY(dy);
-      selectList.remove(shape);
-      picture.remove(shape);
-      picture.add(newShapeLocation);
-      selectList.add(newShapeLocation);
+      shape.addX(dx);
+      shape.addY(dy);
     }
 
   }

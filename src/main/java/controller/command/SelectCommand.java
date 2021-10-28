@@ -20,6 +20,10 @@ public class SelectCommand implements ICommand {
   Point boundaryEnd;
   Picture picture;
   SelectList selectList;
+  int boundaryLeft;
+  int boundaryRight;
+  int boundaryTop;
+  int boundaryBottom;
 
   public SelectCommand(Point boundaryStart, Point boundaryEnd, Picture picture,SelectList selectList)
   {
@@ -28,6 +32,10 @@ public class SelectCommand implements ICommand {
     this.boundaryEnd = normalize.normalizedPointEnd(boundaryStart, boundaryEnd);
     this.picture = picture;
     this.selectList = selectList;
+    boundaryLeft = this.boundaryStart.getX();
+    boundaryRight = this.boundaryEnd.getX();
+    boundaryTop = this.boundaryStart.getY();
+    boundaryBottom = this.boundaryEnd.getY();
   }
 
   @Override
@@ -37,8 +45,7 @@ public class SelectCommand implements ICommand {
     boolean selectedOnce = false;
 
     for(IShape shape : picture.getPicture()){
-      if(boundaryStart.getX() < shape.getStart().getX() && boundaryEnd.getX() > shape.getStart().getX() &&
-          boundaryStart.getY() < shape.getStart().getY() && boundaryEnd.getY() > shape.getEnd().getY())
+      if(overlapSides(shape) && overlapTopandBottom(shape))
       {
         selectedOnce = true;
         temp.add(shape);
@@ -51,10 +58,22 @@ public class SelectCommand implements ICommand {
         selectList.add(shape);
       }
     }
+  }
 
+  public boolean overlapSides(IShape shape){
+    int shapeLeft = shape.getStart().getX();
+    int shapeRight = shape.getEnd().getX();
 
+    return (boundaryRight > shapeLeft && boundaryRight < shapeRight) ||
+        (shapeRight > boundaryLeft && shapeRight < boundaryRight);
+  }
 
+  public boolean overlapTopandBottom(IShape shape){
+    int shapeTop = shape.getStart().getY();
+    int shapeBottom = shape.getEnd().getY();
 
+    return (boundaryBottom > shapeTop && boundaryBottom < shapeBottom) ||
+        (shapeBottom > boundaryTop && shapeBottom < boundaryBottom);
 
   }
 }
