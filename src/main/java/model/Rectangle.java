@@ -31,29 +31,17 @@ public class Rectangle implements IShape {
       this.shading = shading;
   }
 
-  public Rectangle(Rectangle original)
-  {
-    this.start = new Point(original.getStart().getX(),original.getStart().getY());
-    this.end = new Point(original.getEnd().getX(),original.getEnd().getY());
-    this.primaryColor = original.primaryColor;
-    this.secondaryColor = original.secondaryColor;
-    this.shading = original.shading;
-  }
-
 
   @Override
   public void draw(Graphics g) {
 
     Graphics2D graphics2D = (Graphics2D) g;
 
+    graphics2D.setStroke(new BasicStroke(5));
+    graphics2D.setColor(primaryColor.value);
+    graphics2D.fillRect(start.getX(), start.getY(), (end.getX()) - start.getX(),
+        (end.getY()) - start.getY());
 
-    if(primaryColor != null)
-    {
-      graphics2D.setStroke(new BasicStroke(5));
-      graphics2D.setColor(primaryColor.value);
-      graphics2D.fillRect(start.getX(), start.getY(), (end.getX()) - start.getX(),
-          (end.getY()) - start.getY());
-    }
 
   }
 

@@ -1,11 +1,12 @@
 package controller.command;
 
 import controller.interfaces.ICommand;
-import java.util.ArrayList;
 import model.Ellipse;
 import model.Picture.Picture;
+import model.Picture.Point;
 import model.Picture.SelectList;
 import model.Rectangle;
+import model.ShapeFactory;
 import model.ShapeType;
 import model.Triangle;
 import model.interfaces.IShape;
@@ -25,19 +26,11 @@ public class CopyCommand implements ICommand{
 
     for(IShape shape: selectList.getSelect())
     {
-      IShape newShape;
-      if (shape.getType().equals(ShapeType.RECTANGLE)) {
-        newShape = new Rectangle((Rectangle) shape);
-        picture.addCopy(newShape);
-      }
-      if(shape.getType().equals(ShapeType.TRIANGLE)){
-        newShape = new Triangle((Triangle) shape);
-        picture.addCopy(newShape);
-      }
-      if(shape.getType().equals(ShapeType.ELLIPSE)){
-        newShape = new Ellipse((Ellipse) shape);
-        picture.addCopy(newShape);
-      }
+      IShape newShape = new ShapeFactory().createShape(shape.getType(),shape.getPrimaryColor(),shape.getSecondaryColor(),
+          new Point(shape.getStart().getX(),shape.getStart().getY()),new Point(shape.getEnd().getX(),shape.getEnd().getY()),
+          shape.getShading());
+      picture.addCopy(newShape);
+
     }
   }
 

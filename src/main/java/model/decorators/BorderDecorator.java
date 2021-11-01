@@ -46,7 +46,10 @@ public class BorderDecorator implements IShape {
       graphics2D.drawOval(getStart().getX(), getStart().getY(), (getEnd().getX()) - getStart().getX(),(getEnd().getY())- getStart().getY());
     }
 
-    shape.draw(g);
+    if(!shape.getShading().equals(ShapeShadingType.OUTLINE)) {
+
+      shape.draw(g);
+    }
 
   }
 

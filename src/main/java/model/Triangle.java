@@ -32,16 +32,6 @@ public class Triangle implements IShape {
 
   }
 
-  public Triangle(Triangle original)
-  {
-    this.start = new Point(original.getStart().getX(),original.getStart().getY());
-    this.end = new Point(original.getEnd().getX(),original.getEnd().getY());
-    this.primaryColor = original.primaryColor;
-    this.secondaryColor = original.secondaryColor;
-    this.shading = original.shading;
-
-  }
-
 
   @Override
   public void drawOutline(Graphics g) {
@@ -57,16 +47,11 @@ public class Triangle implements IShape {
     y[1] = end.getY();
     y[2] = end.getY();
 
-
     Graphics2D graphics2D = (Graphics2D) g;
 
-
-    if(primaryColor !=null) {
-      graphics2D.setStroke(new BasicStroke(5));
-      graphics2D.setColor(primaryColor.value);
-      graphics2D.fillPolygon(x, y, 3);
-    }
-
+    graphics2D.setStroke(new BasicStroke(5));
+    graphics2D.setColor(primaryColor.value);
+    graphics2D.fillPolygon(x, y, 3);
   }
 
   @Override

@@ -5,7 +5,9 @@ import controller.interfaces.Undoable;
 import java.util.ArrayList;
 import model.Ellipse;
 import model.Picture.Picture;
+import model.Picture.Point;
 import model.Rectangle;
+import model.ShapeFactory;
 import model.ShapeType;
 import model.Triangle;
 import model.interfaces.IShape;
@@ -26,25 +28,12 @@ public class PasteCommand implements ICommand, Undoable {
 
     for(IShape shape: picture.getCopied())
     {
-
-      if (shape.getType().equals(ShapeType.RECTANGLE)) {
-        newShape = new Rectangle((Rectangle) shape);
-        newShape.addX(30);
-        newShape.addY(30);
-        pasted.add(newShape);
-      }
-      if(shape.getType().equals(ShapeType.TRIANGLE)){
-        newShape = new Triangle((Triangle) shape);
-        newShape.addX(30);
-        newShape.addY(30);
-        pasted.add(newShape);
-      }
-      if(shape.getType().equals(ShapeType.ELLIPSE)){
-        newShape = new Ellipse((Ellipse) shape);
-        newShape.addX(30);
-        newShape.addY(30);
-        pasted.add(newShape);
-      }
+      IShape newShape = new ShapeFactory().createShape(shape.getType(),shape.getPrimaryColor(),shape.getSecondaryColor(),
+          new Point(shape.getStart().getX(),shape.getStart().getY()),new Point(shape.getEnd().getX(),shape.getEnd().getY()),
+          shape.getShading());
+      newShape.addX(30);
+      newShape.addY(30);
+      pasted.add(newShape);
     }
 
     for(IShape shapes : pasted){

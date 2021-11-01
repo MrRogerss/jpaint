@@ -30,13 +30,6 @@ public class Ellipse implements IShape {
     this.shading = shading;
   }
 
-  public Ellipse(Ellipse original)
-  {
-    this.start = new Point(original.getStart().getX(),original.getStart().getY());
-    this.end = new Point(original.getEnd().getX(),original.getEnd().getY());
-    this.primaryColor = original.primaryColor;
-    this.secondaryColor = original.secondaryColor;
-  }
 
 
 
@@ -45,12 +38,9 @@ public class Ellipse implements IShape {
   public void draw(Graphics g) {
     Graphics2D graphics2D = (Graphics2D) g;
 
-    if(primaryColor!= null) {
-      graphics2D.setStroke(new BasicStroke(5));
-      graphics2D.setColor(primaryColor.value);
-      graphics2D.fillOval(start.getX(), start.getY(), getWidth(), getHeight());
-    }
-
+    graphics2D.setStroke(new BasicStroke(5));
+    graphics2D.setColor(primaryColor.value);
+    graphics2D.fillOval(start.getX(), start.getY(), getWidth(), getHeight());
   }
 
   @Override

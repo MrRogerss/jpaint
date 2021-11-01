@@ -38,13 +38,13 @@ public class ShapeFactory {
 
     if(shading.equals(ShapeShadingType.OUTLINE)){
       if(type.equals(ShapeType.RECTANGLE)) {
-        newShape = new BorderDecorator(new Rectangle(start, end, null, secondaryColor,shading), secondaryColor);
+        newShape = new BorderDecorator(new Rectangle(start, end, primaryColor, secondaryColor,shading), primaryColor);
       }
       if(type.equals(ShapeType.TRIANGLE)){
-        newShape = new BorderDecorator(new Triangle(start, end, null, secondaryColor,shading),secondaryColor);
+        newShape = new BorderDecorator(new Triangle(start, end, primaryColor, secondaryColor,shading),primaryColor);
       }
       if(type.equals(ShapeType.ELLIPSE)){
-        newShape = new BorderDecorator(new Ellipse(start, end, null, secondaryColor,shading),secondaryColor);
+        newShape = new BorderDecorator(new Ellipse(start, end, primaryColor, secondaryColor,shading),primaryColor);
       }
     }
     return newShape;
