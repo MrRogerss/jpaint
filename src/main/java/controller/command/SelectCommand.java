@@ -14,7 +14,6 @@ import model.interfaces.IShape;
  */
 
 public class SelectCommand implements ICommand {
-
   NormalizePoints normalize;
   Point boundaryStart;
   Point boundaryEnd;
@@ -53,6 +52,7 @@ public class SelectCommand implements ICommand {
     }
     if(selectedOnce == true){
       selectList.clearSelected();
+      picture.clearCopied();
       for(IShape shape : temp ){
         System.out.println("Selected shape");
         selectList.add(shape);

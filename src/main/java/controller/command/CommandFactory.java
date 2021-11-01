@@ -37,6 +37,7 @@ public class CommandFactory {
     if(commandController.getMouseMode().equals(MouseMode.MOVE)){
       commandController.onMove(start,end);
     }
+
   }
 
 }

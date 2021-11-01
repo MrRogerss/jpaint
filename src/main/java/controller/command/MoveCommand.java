@@ -2,6 +2,7 @@ package controller.command;
 
 import controller.interfaces.ICommand;
 import controller.interfaces.Undoable;
+import java.util.ArrayList;
 import model.Picture.NormalizePoints;
 import model.Picture.Picture;
 import model.Picture.Point;
@@ -15,13 +16,12 @@ import model.interfaces.IShape;
 
  */
 public class MoveCommand implements ICommand, Undoable {
-
+private ArrayList<IShape> movedShapes = new ArrayList<>();
 NormalizePoints normalize;
 Point moveStart;
 Point moveEnd;
 SelectList selectList;
 Picture picture;
-IShape newShapeLocation;
 int dx;
 int dy;
 
@@ -38,7 +38,9 @@ int dy;
   @Override
   public void run() {
 
-    for(IShape shape : selectList.getSelect())
+    movedShapes.addAll(selectList.getSelect());
+
+    for(IShape shape : movedShapes)
     {
       shape.addX(dx);
       shape.addY(dy);
@@ -49,7 +51,7 @@ int dy;
 
   @Override
   public void undo() {
-    for(IShape shape : selectList.getSelect())
+    for(IShape shape : movedShapes)
     {
       shape.subtractX(dx);
       shape.subtractY(dy);
@@ -59,7 +61,7 @@ int dy;
 
   @Override
   public void redo() {
-    for(IShape shape : selectList.getSelect())
+    for(IShape shape : movedShapes)
     {
       shape.addX(dx);
       shape.addY(dy);

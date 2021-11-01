@@ -17,24 +17,41 @@ public class Ellipse implements IShape {
   NormalizePoints normalize;
   Point start;
   Point end;
-  ShapeColor color;
+  ShapeColor primaryColor;
+  ShapeColor secondaryColor;
 
-  public Ellipse(Point start, Point end, ShapeColor color){
+  public Ellipse(Point start, Point end, ShapeColor primaryColor,ShapeColor secondaryColor){
     normalize = new NormalizePoints(start, end);
     this.start= normalize.normalizedPointStart(start, end);
     this.end = normalize.normalizedPointEnd(start, end);
-    this.color = color;
+    this.primaryColor = primaryColor;
+    this.secondaryColor = secondaryColor;
   }
+
+  public Ellipse(Ellipse original)
+  {
+    this.start = new Point(original.getStart().getX(),original.getStart().getY());
+    this.end = new Point(original.getEnd().getX(),original.getEnd().getY());
+    this.primaryColor = original.primaryColor;
+    this.secondaryColor = original.secondaryColor;
+  }
+
+
+
 
   @Override
   public void draw(Graphics g) {
     Graphics2D graphics2D = (Graphics2D) g;
 
     graphics2D.setStroke(new BasicStroke(5));
-    graphics2D.setColor(color.value);
+    graphics2D.setColor(primaryColor.value);
     graphics2D.fill(new Ellipse2D.Double(start.getX(), start.getY(),getWidth(),getHeight()));
   }
 
+  @Override
+  public void drawOutline(Graphics g) {
+
+  }
 
   private int getWidth(){
     return end.getX() - start.getX();
@@ -52,6 +69,11 @@ public class Ellipse implements IShape {
   @Override
   public Point getEnd() {
     return end;
+  }
+
+  @Override
+  public ShapeType getType() {
+    return ShapeType.ELLIPSE;
   }
 
   @Override

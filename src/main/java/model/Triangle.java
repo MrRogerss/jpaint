@@ -16,32 +16,49 @@ public class Triangle implements IShape {
   NormalizePoints normalize;
   Point start;
   Point end;
-  ShapeColor color;
+  ShapeColor primaryColor;
+  ShapeColor secondaryColor;
   int[] x = new int[3];
   int[] y = new int[3];
 
-  public Triangle(Point start, Point end, ShapeColor color){
+  public Triangle(Point start, Point end, ShapeColor primaryColor,ShapeColor secondaryColor){
     normalize = new NormalizePoints(start, end);
     this.start = normalize.normalizedPointStart(start, end);
     this.end = normalize.normalizedPointEnd(start, end);
-    this.color = color;
+    this.primaryColor = primaryColor;
+    this.secondaryColor = secondaryColor;
+
+  }
+
+  public Triangle(Triangle original)
+  {
+    this.start = new Point(original.getStart().getX(),original.getStart().getY());
+    this.end = new Point(original.getEnd().getX(),original.getEnd().getY());
+    this.primaryColor = original.primaryColor;
+    this.secondaryColor = original.secondaryColor;
+
+  }
+
+
+  @Override
+  public void drawOutline(Graphics g) {
+
+  }
+
+  @Override
+  public void draw(Graphics g) {
     x[0] = start.getX();
     x[1] = end.getX();
     x[2] = start.getX();
     y[0] = start.getY();
     y[1] = end.getY();
     y[2] = end.getY();
-  }
-
-
-  @Override
-  public void draw(Graphics g) {
 
 
     Graphics2D graphics2D = (Graphics2D) g;
 
     graphics2D.setStroke(new BasicStroke(5));
-    graphics2D.setColor(color.value);
+    graphics2D.setColor(primaryColor.value);
     graphics2D.fillPolygon(x,y,3);
 
   }
@@ -54,6 +71,11 @@ public class Triangle implements IShape {
   @Override
   public Point getEnd() {
     return end;
+  }
+
+  @Override
+  public ShapeType getType() {
+    return ShapeType.TRIANGLE;
   }
 
   @Override

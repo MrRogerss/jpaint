@@ -10,18 +10,18 @@ import model.interfaces.IShape;
 
 public class ShapeFactory {
 
-  public IShape createShape(ShapeType type, ShapeColor color, Point start, Point end) {
+  public IShape createShape(ShapeType type, ShapeColor primaryColor, ShapeColor secondaryColor, Point start, Point end) {
     IShape newShape = null;
     if(type.equals(ShapeType.RECTANGLE)){
-      newShape = new Rectangle(start, end, color);
+      newShape = new Rectangle(start, end, primaryColor, secondaryColor);
     }
 
     if(type.equals(ShapeType.TRIANGLE)){
-      newShape = new Triangle(start, end, color);
+      newShape = new Triangle(start, end, primaryColor,secondaryColor);
     }
 
     if(type.equals(ShapeType.ELLIPSE)){
-      newShape = new Ellipse(start, end, color);
+      newShape = new Ellipse(start, end, primaryColor,secondaryColor);
     }
 
     return newShape;

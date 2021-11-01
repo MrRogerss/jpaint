@@ -29,7 +29,7 @@ public class Main {
         UiModule uiModule = new Gui(guiWindow);
         UserChoices appState = new UserChoicesImpl(uiModule);
         CommandController commandController = new CommandController(appState,picture,selectList,paintCanvas);
-        EventConnector controller = new EventConnectorImpl(uiModule, appState,commandController);
+        EventConnector controller = new EventConnectorImpl(uiModule, appState,commandController,selectList,picture);
 
         KeyboardInterface keys = new KeyboardInterface(paintCanvas, appState);
         keys.setup();

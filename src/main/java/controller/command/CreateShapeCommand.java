@@ -19,7 +19,8 @@ import model.interfaces.UserChoices;
 
 public class CreateShapeCommand implements ICommand, Undoable {
 
-  ShapeColor color;
+  ShapeColor primaryColor;
+  ShapeColor secondaryColor;
   ShapeType type;
   Point start;
   Point end;
@@ -28,7 +29,8 @@ public class CreateShapeCommand implements ICommand, Undoable {
 
 
 public CreateShapeCommand(UserChoices userChoices, Point start, Point end, Picture picture){
-  this.color = userChoices.getActivePrimaryColor();
+  this.primaryColor = userChoices.getActivePrimaryColor();
+  this.secondaryColor = userChoices.getActiveSecondaryColor();
   this.type = userChoices.getActiveShapeType();
   this.start = start;
   this.end = end;
@@ -37,7 +39,7 @@ public CreateShapeCommand(UserChoices userChoices, Point start, Point end, Pictu
 
   @Override
   public void run() {
-    shape = new ShapeFactory().createShape(type,color,start,end);
+    shape = new ShapeFactory().createShape(type,primaryColor,secondaryColor,start,end);
     this.picture.add(shape);
     CommandHistory.add(this);
 

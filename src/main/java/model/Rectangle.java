@@ -16,14 +16,24 @@ public class Rectangle implements IShape {
   NormalizePoints normalize;
   Point start;
   Point end;
-  ShapeColor color;
+  ShapeColor primaryColor;
+  ShapeColor secondaryColor;
 
-  public Rectangle(Point start, Point end, ShapeColor color)
+  public Rectangle(Point start, Point end, ShapeColor primaryColor,ShapeColor secondaryColor)
   {
       normalize = new NormalizePoints(start, end);
       this.start = normalize.normalizedPointStart(start,end);
       this.end = normalize.normalizedPointEnd(start,end);
-      this.color = color;
+      this.primaryColor = primaryColor;
+      this.secondaryColor = secondaryColor;
+  }
+
+  public Rectangle(Rectangle original)
+  {
+    this.start = new Point(original.getStart().getX(),original.getStart().getY());
+    this.end = new Point(original.getEnd().getX(),original.getEnd().getY());
+    this.primaryColor = original.primaryColor;
+    this.secondaryColor = original.secondaryColor;
   }
 
 
@@ -33,9 +43,14 @@ public class Rectangle implements IShape {
     Graphics2D graphics2D = (Graphics2D) g;
 
     graphics2D.setStroke(new BasicStroke(5));
-    graphics2D.setColor(color.value);
+    graphics2D.setColor(primaryColor.value);
     graphics2D.fillRect(start.getX(), start.getY(), (end.getX())- start.getX(),(end.getY())- start.getY());
 
+
+  }
+
+  @Override
+  public void drawOutline(Graphics g) {
 
   }
 
@@ -50,9 +65,14 @@ public class Rectangle implements IShape {
   }
 
   @Override
+  public ShapeType getType() {
+    return ShapeType.RECTANGLE;
+  }
+
+  @Override
   public void addX(int x) {
-    start.setX(start.getX() + x );
-    end.setX(end.getX() + x);
+    this.start.setX(start.getX() + x );
+    this.end.setX(end.getX() + x);
   }
 
   @Override

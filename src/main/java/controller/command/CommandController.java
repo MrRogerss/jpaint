@@ -45,7 +45,18 @@ public class CommandController {
     ICommand move = new MoveCommand(start,end,selectList,picture);
     move.run();
     canvas.repaint();
+  }
 
+  public void onCopy(){
+    ICommand copy = new CopyCommand(selectList,picture);
+    copy.run();
+  }
+
+  public void onPaste(){
+    canvas.repaint();
+    ICommand paste = new PasteCommand(picture);
+    paste.run();
+    canvas.repaint();
   }
 
   public void onUndo() {
