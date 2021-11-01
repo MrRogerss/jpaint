@@ -4,6 +4,7 @@ import java.awt.BasicStroke;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import model.Picture.Point;
+import model.decorators.BorderDecorator;
 import model.interfaces.IShape;
 import model.Picture.NormalizePoints;
 
@@ -18,14 +19,16 @@ public class Rectangle implements IShape {
   Point end;
   ShapeColor primaryColor;
   ShapeColor secondaryColor;
+  ShapeShadingType shading;
 
-  public Rectangle(Point start, Point end, ShapeColor primaryColor,ShapeColor secondaryColor)
+  public Rectangle(Point start, Point end, ShapeColor primaryColor,ShapeColor secondaryColor, ShapeShadingType shading)
   {
       normalize = new NormalizePoints(start, end);
       this.start = normalize.normalizedPointStart(start,end);
       this.end = normalize.normalizedPointEnd(start,end);
       this.primaryColor = primaryColor;
       this.secondaryColor = secondaryColor;
+      this.shading = shading;
   }
 
   public Rectangle(Rectangle original)
@@ -34,6 +37,7 @@ public class Rectangle implements IShape {
     this.end = new Point(original.getEnd().getX(),original.getEnd().getY());
     this.primaryColor = original.primaryColor;
     this.secondaryColor = original.secondaryColor;
+    this.shading = original.shading;
   }
 
 
@@ -42,10 +46,14 @@ public class Rectangle implements IShape {
 
     Graphics2D graphics2D = (Graphics2D) g;
 
-    graphics2D.setStroke(new BasicStroke(5));
-    graphics2D.setColor(primaryColor.value);
-    graphics2D.fillRect(start.getX(), start.getY(), (end.getX())- start.getX(),(end.getY())- start.getY());
 
+    if(primaryColor != null)
+    {
+      graphics2D.setStroke(new BasicStroke(5));
+      graphics2D.setColor(primaryColor.value);
+      graphics2D.fillRect(start.getX(), start.getY(), (end.getX()) - start.getX(),
+          (end.getY()) - start.getY());
+    }
 
   }
 
@@ -67,6 +75,21 @@ public class Rectangle implements IShape {
   @Override
   public ShapeType getType() {
     return ShapeType.RECTANGLE;
+  }
+
+  @Override
+  public ShapeColor getPrimaryColor() {
+    return primaryColor;
+  }
+
+  @Override
+  public ShapeColor getSecondaryColor() {
+    return secondaryColor;
+  }
+
+  @Override
+  public ShapeShadingType getShading() {
+    return shading;
   }
 
   @Override

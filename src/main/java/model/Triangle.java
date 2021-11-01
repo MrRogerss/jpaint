@@ -18,15 +18,17 @@ public class Triangle implements IShape {
   Point end;
   ShapeColor primaryColor;
   ShapeColor secondaryColor;
+  ShapeShadingType shading;
   int[] x = new int[3];
   int[] y = new int[3];
 
-  public Triangle(Point start, Point end, ShapeColor primaryColor,ShapeColor secondaryColor){
+  public Triangle(Point start, Point end, ShapeColor primaryColor,ShapeColor secondaryColor,ShapeShadingType shading){
     normalize = new NormalizePoints(start, end);
     this.start = normalize.normalizedPointStart(start, end);
     this.end = normalize.normalizedPointEnd(start, end);
     this.primaryColor = primaryColor;
     this.secondaryColor = secondaryColor;
+    this.shading = shading;
 
   }
 
@@ -36,6 +38,7 @@ public class Triangle implements IShape {
     this.end = new Point(original.getEnd().getX(),original.getEnd().getY());
     this.primaryColor = original.primaryColor;
     this.secondaryColor = original.secondaryColor;
+    this.shading = original.shading;
 
   }
 
@@ -57,9 +60,12 @@ public class Triangle implements IShape {
 
     Graphics2D graphics2D = (Graphics2D) g;
 
-    graphics2D.setStroke(new BasicStroke(5));
-    graphics2D.setColor(primaryColor.value);
-    graphics2D.fillPolygon(x,y,3);
+
+    if(primaryColor !=null) {
+      graphics2D.setStroke(new BasicStroke(5));
+      graphics2D.setColor(primaryColor.value);
+      graphics2D.fillPolygon(x, y, 3);
+    }
 
   }
 
@@ -76,6 +82,21 @@ public class Triangle implements IShape {
   @Override
   public ShapeType getType() {
     return ShapeType.TRIANGLE;
+  }
+
+  @Override
+  public ShapeColor getPrimaryColor() {
+    return primaryColor;
+  }
+
+  @Override
+  public ShapeColor getSecondaryColor() {
+    return secondaryColor;
+  }
+
+  @Override
+  public ShapeShadingType getShading() {
+    return shading;
   }
 
   @Override

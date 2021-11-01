@@ -38,7 +38,6 @@ public class PasteCommand implements ICommand, Undoable {
         newShape.addX(30);
         newShape.addY(30);
         pasted.add(newShape);
-        System.out.println("Pasted triangle");
       }
       if(shape.getType().equals(ShapeType.ELLIPSE)){
         newShape = new Ellipse((Ellipse) shape);

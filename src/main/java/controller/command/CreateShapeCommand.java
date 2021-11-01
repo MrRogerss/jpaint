@@ -7,6 +7,7 @@ import model.Picture.Point;
 import model.Rectangle;
 import model.ShapeColor;
 import model.ShapeFactory;
+import model.ShapeShadingType;
 import model.ShapeType;
 import model.interfaces.IShape;
 import model.interfaces.UserChoices;
@@ -21,6 +22,7 @@ public class CreateShapeCommand implements ICommand, Undoable {
 
   ShapeColor primaryColor;
   ShapeColor secondaryColor;
+  ShapeShadingType shading;
   ShapeType type;
   Point start;
   Point end;
@@ -35,11 +37,12 @@ public CreateShapeCommand(UserChoices userChoices, Point start, Point end, Pictu
   this.start = start;
   this.end = end;
   this.picture = picture;
+  this.shading = userChoices.getActiveShapeShadingType();
 }
 
   @Override
   public void run() {
-    shape = new ShapeFactory().createShape(type,primaryColor,secondaryColor,start,end);
+    shape = new ShapeFactory().createShape(type,primaryColor,secondaryColor,start,end,shading);
     this.picture.add(shape);
     CommandHistory.add(this);
 

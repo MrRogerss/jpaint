@@ -2,6 +2,8 @@ package model.interfaces;
 
 import java.awt.Graphics;
 import model.Picture.Point;
+import model.ShapeColor;
+import model.ShapeShadingType;
 import model.ShapeType;
 
 /**
@@ -19,6 +21,9 @@ public interface IShape {
 
   void drawOutline(Graphics g);
   ShapeType getType();
+  ShapeColor getPrimaryColor();
+  ShapeColor getSecondaryColor();
+  ShapeShadingType getShading();
 
   void addX(int x);
   void addY(int y);
