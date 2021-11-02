@@ -3,6 +3,7 @@ package view.gui;
 import javax.swing.JComponent;
 import java.awt.*;
 import model.Picture.Picture;
+import model.Picture.SelectList;
 import model.interfaces.IShape;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,8 +15,10 @@ import org.slf4j.LoggerFactory;
  */
 public class PaintCanvas extends JComponent {
     Picture picture;
-    public PaintCanvas(Picture picture) {
+    SelectList selectList;
+    public PaintCanvas(Picture picture, SelectList selectList) {
         this.picture=picture;
+        this.selectList = selectList;
     }
 
     private static final Logger log = LoggerFactory.getLogger(PaintCanvas.class);
@@ -35,6 +38,10 @@ public class PaintCanvas extends JComponent {
         for(IShape shape : picture.getPicture()){
             shape.draw(graphics2d);
         }
+        for(IShape shape : selectList.getSelect()) {
+            shape.drawOutline(graphics2d);
+        }
+
 
     }
 }

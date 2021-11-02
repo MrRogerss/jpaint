@@ -1,8 +1,10 @@
 package model;
 
 import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Stroke;
 import model.Picture.Point;
 import model.interfaces.IShape;
 import model.Picture.NormalizePoints;
@@ -35,6 +37,19 @@ public class Triangle implements IShape {
 
   @Override
   public void drawOutline(Graphics g) {
+    x[0] = start.getX() -3;
+    x[1] = end.getX() +3;
+    x[2] = start.getX() -3;
+    y[0] = start.getY() -1;
+    y[1] = end.getY() +1;
+    y[2] = end.getY() +1;
+
+    Graphics2D graphics2D = (Graphics2D) g;
+
+    Stroke dashed = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{10}, 0);
+    graphics2D.setStroke(dashed);
+    graphics2D.setColor(Color.BLACK);
+    graphics2D.drawPolygon(x,y,3);
 
   }
 

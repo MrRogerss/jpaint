@@ -1,15 +1,16 @@
 package controller.command;
 
 import controller.interfaces.ICommand;
-import model.Ellipse;
 import model.Picture.Picture;
 import model.Picture.Point;
 import model.Picture.SelectList;
-import model.Rectangle;
 import model.ShapeFactory;
-import model.ShapeType;
-import model.Triangle;
 import model.interfaces.IShape;
+
+/**
+ * The CopyCommand takes the shapes from the users current selections in the selectedList
+ * and creates deep copies of them. These copies are added to the Picture class' copiedList.
+ */
 
 public class CopyCommand implements ICommand{
 

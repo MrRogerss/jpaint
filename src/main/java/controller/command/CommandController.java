@@ -5,6 +5,7 @@ import model.MouseMode;
 import model.Picture.Picture;
 import model.Picture.Point;
 import model.Picture.SelectList;
+import model.interfaces.IShape;
 import model.interfaces.UserChoices;
 import view.gui.PaintCanvas;
 
@@ -38,6 +39,7 @@ public class CommandController {
   public void onSelect(Point start, Point end){
     ICommand select = new SelectCommand(start, end, picture,selectList);
     select.run();
+    canvas.repaint();
   }
 
   public void onMove(Point start, Point end){

@@ -1,8 +1,10 @@
 package model;
 
 import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Stroke;
 import model.Picture.Point;
 import model.decorators.BorderDecorator;
 import model.interfaces.IShape;
@@ -47,6 +49,12 @@ public class Rectangle implements IShape {
 
   @Override
   public void drawOutline(Graphics g) {
+    Graphics2D graphics2D = (Graphics2D) g;
+
+    Stroke dashed = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 10.0f, new float[]{9}, 0);
+    graphics2D.setStroke(dashed);
+    graphics2D.setColor(Color.BLACK);
+    graphics2D.drawRect(start.getX() -4, start.getY() -4, (end.getX() - start.getX())+6 , (end.getY() - start.getY())+6) ;
 
   }
 

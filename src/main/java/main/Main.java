@@ -24,7 +24,7 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
         Picture picture = new Picture();
         SelectList selectList = new SelectList();
-        PaintCanvas paintCanvas = new PaintCanvas(picture);
+        PaintCanvas paintCanvas = new PaintCanvas(picture,selectList);
         GuiWindow guiWindow = new GuiWindowImpl(paintCanvas);
         UiModule uiModule = new Gui(guiWindow);
         UserChoices appState = new UserChoicesImpl(uiModule);

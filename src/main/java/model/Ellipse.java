@@ -1,8 +1,10 @@
 package model;
 
 import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Stroke;
 import java.awt.geom.Ellipse2D;
 import model.Picture.Point;
 import model.interfaces.IShape;
@@ -45,6 +47,13 @@ public class Ellipse implements IShape {
 
   @Override
   public void drawOutline(Graphics g) {
+
+    Graphics2D graphics2D = (Graphics2D) g;
+
+    Stroke dashed = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{10}, 0);
+    graphics2D.setStroke(dashed);
+    graphics2D.setColor(Color.BLACK);
+    graphics2D.drawOval(start.getX() -3, start.getY() -1, (end.getX() - start.getX())+4 , (end.getY() - start.getY())+4);
 
   }
 

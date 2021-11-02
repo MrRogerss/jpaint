@@ -10,6 +10,11 @@ import model.ShapeShadingType;
 import model.ShapeType;
 import model.interfaces.IShape;
 
+/**
+ * This class is a decorator for Shapes. If the user selects a border in their shading type, this decorator
+ * will be applied to their shape, giving the desired border treatment.
+ */
+
 public class BorderDecorator implements IShape {
 
   IShape shape;
@@ -65,6 +70,7 @@ public class BorderDecorator implements IShape {
 
   @Override
   public void drawOutline(Graphics g) {
+    shape.drawOutline(g);
 
   }
 
