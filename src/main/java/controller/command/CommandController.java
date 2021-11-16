@@ -71,6 +71,12 @@ public class CommandController {
     canvas.repaint();
   }
 
+  public void onDelete(){
+    ICommand delete = new DeleteCommand(picture,selectList);
+    delete.run();
+    canvas.repaint();
+  }
+
   public MouseMode getMouseMode(){
     return userChoices.getActiveMouseMode();
   }
