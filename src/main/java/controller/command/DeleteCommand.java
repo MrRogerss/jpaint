@@ -7,6 +7,11 @@ import model.Picture.Picture;
 import model.Picture.SelectList;
 import model.interfaces.IShape;
 
+/**
+ * Takes shapes from the selected shapes list and deletes them from the canvas.
+ * This command also supports the undoing and redoing of shapes.
+ */
+
 public class DeleteCommand implements ICommand, Undoable {
 
   Picture picture;
